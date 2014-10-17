@@ -3,8 +3,9 @@ require 'serverspec'
 set :backend, :exec
 
 describe 'awesome app' do
-  it 'installs apache2' do
+  it 'installs apache2 and start it' do
     expect(package('apache2')).to be_installed
+    expect(port(80)).to be_listening.with('tcp6')
   end
 
   it 'creates directory' do
@@ -22,5 +23,10 @@ describe 'awesome app' do
     %w(libapache2-mod-wsgi python-pip python-mysqldb).each do |package|
       expect(package(package)).to be_installed
     end
+  end
+
+  it 'installs apache virtualhost' do
+    file = file('/etc/apache2/sites-enabled/AAR-apache.conf')
+    expect(file).to be_file
   end
 end
