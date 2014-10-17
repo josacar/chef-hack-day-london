@@ -7,5 +7,6 @@ describe 'awesome::dependencies' do
   it { is_expected.to install_package('python-pip') }
   it { is_expected.to install_package('python-mysqldb') }
 
+  it { is_expected.to include_recipe('python::default') }
   it { is_expected.to install_python_pip('flask') }
 end

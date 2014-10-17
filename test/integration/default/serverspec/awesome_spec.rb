@@ -17,4 +17,10 @@ describe 'awesome app' do
   it 'clones source and extracts it' do
     expect(file('/var/www/AAR/AAR/awesomeapp.wsgi')).to be_file
   end
+
+  it 'installs python packages' do
+    %w(libapache2-mod-wsgi python-pip python-mysqldb).each do |package|
+      expect(package(package)).to be_installed
+    end
+  end
 end

@@ -11,6 +11,7 @@ platforms:
 suites:
   - name: default
     run_list:
+      - recipe[awesome::dependencies]
       - recipe[awesome::web]
       - recipe[awesome::source]
     attributes:
